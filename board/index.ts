@@ -15,21 +15,8 @@ export class Board<T = any> {
             this.value = this.value.concat(Array(index - this.value.length + 1).fill(new Row<T>([])));
         }
 
-        const self = this;
-
-        return {
-            set(targetValue: (Piece<T> | null)[]) {
-                return self.value[index] = new Row<T>(targetValue);
-            },
-            get(): (Piece<T> | null)[] | null {
-                if  (!self.value[index]) return null;
-                return self.value[index]!.get();
-            },
-            index: (index: number) => {
-                if (!self.value[index]) return null;
-                return self.value[index]!.index(index);
-            }
-        }
+        // safe cast
+        return this.value[index] as Row<T>;
     }
 
     set(targetValue: (Row<T> | null)[]) {

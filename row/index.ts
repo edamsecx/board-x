@@ -14,17 +14,8 @@ export class Row<T = any> {
             this.value = this.value.concat(Array(index - this.value.length + 1).fill(new Piece<T | null>(null)));
         }
 
-        const self = this;
-
-        return {
-            set(targetValue: T) {
-                return self.value[index] = new Piece<T>(targetValue);
-            },
-            get(): T | null {
-                if  (!self.value[index]) return null;
-                return self.value[index]!.get();
-            }
-        }
+        // safe cast
+        return this.value[index] as Piece<T>;
     }
 
     set(targetValue: (Piece<T> | null)[]) {
