@@ -23,4 +23,4 @@ const board = new Board<number>([
     ])
 ]);
 
-console.log(board.index(4).get())
+console.log(board.get())
