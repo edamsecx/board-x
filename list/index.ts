@@ -1,6 +1,6 @@
 import { Piece } from "../piece";
 
-export class Row<T = any> {
+export class List<T = any> {
     constructor(
         private value: (Piece<T> | null)[]
     ) {}

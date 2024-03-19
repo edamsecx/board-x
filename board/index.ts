@@ -1,9 +1,9 @@
 import type { Piece } from '../piece';
-import { Row } from '../row';
+import { List } from '../list';
 
 export class Board<T = any> {
     constructor(
-        private value: (Row<T> | null) []
+        private value: (List<T> | null) []
     ) {}
 
     index(index: number) {
@@ -12,14 +12,14 @@ export class Board<T = any> {
         }
 
         if (index > this.value.length - 1) {
-            this.value = this.value.concat(Array(index - this.value.length + 1).fill(new Row<T>([])));
+            this.value = this.value.concat(Array(index - this.value.length + 1).fill(new List<T>([])));
         }
 
         // safe cast
-        return this.value[index] as Row<T>;
+        return this.value[index] as List<T>;
     }
 
-    set(targetValue: (Row<T> | null)[]) {
+    set(targetValue: (List<T> | null)[]) {
         this.value = targetValue;
     }
 
