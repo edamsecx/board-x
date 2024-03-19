@@ -2,7 +2,7 @@ export class Piece<T = any> {
   constructor(private value: T) {}
 
   set(targetValue: T) {
-    this.value = targetValue;
+    return this.value = targetValue;
   }
 
   get() {

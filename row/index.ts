@@ -10,15 +10,15 @@ export class Row<T = any> {
             throw new Error()
         }
 
-        if (this.value.length > index) {
-            this.value = this.value.concat(Array(index - this.value.length + 1).fill(null));
+        if (index > this.value.length) {
+            this.value = this.value.concat(Array(index - this.value.length + 1).fill(new Piece<T | null>(null)));
         }
 
         const self = this;
 
         return {
             set(targetValue: T) {
-                self.value[index] = new Piece<T>(targetValue);
+                return self.value[index] = new Piece<T>(targetValue);
             },
             get(): T | null {
                 if  (!self.value[index]) return null;
@@ -28,7 +28,7 @@ export class Row<T = any> {
     }
 
     set(targetValue: (Piece<T> | null)[]) {
-        this.value = targetValue;
+        return this.value = targetValue;
     }
 
     get() {
